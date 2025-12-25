@@ -1,7 +1,8 @@
 package com.quiz.Repository;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.quiz.Service.Questions;
@@ -9,16 +10,15 @@ import com.quiz.Service.Questions;
 @Service
 public class QuestionService{
 
-
-	public Questions question;
-	
-	List<Questions> list = new ArrayList<Questions>();	
-	
+	@Autowired
+	public QuizRepo qr;
+		
 	public void addQuestion(Questions question) {
-		list.add(question);		
+		qr.save(question);
 	}
 	
 	public List<Questions> showQuestions(){
-		return list;
+		
+		return qr.findAll();
 	}
 }

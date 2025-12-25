@@ -32,7 +32,8 @@ public class QuestionCon {
 	
 	@PostMapping("addQues")
 	public void addQues(@RequestBody Questions question){
-		System.out.println(question.toString());
+		
 		 qs.addQuestion(question);
+		 System.out.println(question.toString());
 	}
 }
