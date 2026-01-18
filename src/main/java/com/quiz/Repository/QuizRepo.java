@@ -7,5 +7,5 @@ import com.quiz.Service.Questions;
 
 @Repository
 public interface QuizRepo extends JpaRepository<Questions, Integer> {
-
+//This should have been a dao layer.
 }
