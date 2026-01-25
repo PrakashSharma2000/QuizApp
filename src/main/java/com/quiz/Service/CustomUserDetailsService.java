@@ -27,6 +27,8 @@ public class CustomUserDetailsService implements UserDetailsService{
 		userRepository.save(users);
 	}
 
+	
+	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		// TODO Auto-generated method stub

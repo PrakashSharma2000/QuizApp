@@ -3,7 +3,10 @@ package com.quiz.security;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -31,7 +34,7 @@ public class SecurityConfig {
     	http
         .csrf(csrf -> csrf.disable())
         .authorizeHttpRequests(req -> req
-            .requestMatchers("/addUser").permitAll() // public
+            .requestMatchers("/login","/register").permitAll() // public
             .anyRequest().authenticated()
         )
         .httpBasic(Customizer.withDefaults())
@@ -60,5 +63,11 @@ public class SecurityConfig {
     PasswordEncoder passwordEncoder()
     {
     	return new BCryptPasswordEncoder();
+    }
+    
+    @Bean
+    AuthenticationManager authenticationManager(AuthenticationConfiguration config){
+		
+    	return config.getAuthenticationManager();	
     }
 }
